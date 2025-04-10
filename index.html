@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="google-adsense-account" content="ca-pub-4535400425950412">
+    <script async 
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4535400425950412" 
+        crossorigin="anonymous">
+    </script>
+    <title>Calculator Yethu</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator Yethu</title>
+
+    <!-- Favicon and App Icons -->
+    <link rel="CYlogo.jpg" sizes="180x180" href="CYlogo.png">
+    <link rel="icon" type="CYlogo.png" sizes="32x32" href="CYlogo.png">
+    <link rel="icon" type="CYlogo.png" sizes="16x16" href="CYlogo.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+
     <style>
         /* Global Reset */
         * {
@@ -20,11 +32,10 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            height: 150vh; /* Increased height for scrolling */
+            height: 150vh;
             padding-top: 40px;
         }
 
-        /* Title in Top Left */
         .logo-title {
             font-size: 28px;
             font-weight: bold;
@@ -47,7 +58,6 @@
             100% { text-shadow: 0px 0px 12px #00e1ff, 0px 0px 20px #00e1ff; }
         }
 
-        /* Calculator Box */
         .calculator {
             width: 350px;
             background: #161b22;
@@ -55,10 +65,9 @@
             border-radius: 12px;
             box-shadow: 0px 4px 15px rgba(0, 225, 255, 0.5);
             text-align: center;
-            margin-top: 80px; /* Moved down for spacing */
+            margin-top: 80px;
         }
 
-        /* Display Screen */
         .display {
             width: 100%;
             height: 70px;
@@ -74,7 +83,6 @@
             box-shadow: inset 0px 0px 8px rgba(0, 225, 255, 0.5);
         }
 
-        /* Grid Layout for Buttons */
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -82,7 +90,6 @@
             margin-top: 15px;
         }
 
-        /* Button Styles */
         button {
             padding: 18px;
             font-size: 22px;
@@ -101,20 +108,111 @@
             box-shadow: 0px 6px 12px rgba(0, 225, 255, 0.5);
         }
 
-        /* Special Buttons */
         .operator { background: #ff9800; color: white; }
         .operator:hover { background: #e68900; }
         .clear { background: red; color: white; }
         .equal { background: green; color: white; grid-column: span 2; }
 
+        .extra-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .extra-button {
+            padding: 18px;
+            font-size: 20px;
+            background: #29303a;
+            color: #00e1ff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 225, 255, 0.3);
+            cursor: pointer;
+        }
+
+        .extra-button:hover {
+            background: #21262d;
+            transform: scale(1.05);
+        }
+
+        /* Finance Section Styles */
+        .finance-section {
+            background: #161b22;
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 225, 255, 0.5);
+            color: #00e1ff;
+        }
+
+        .finance-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .finance-description {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .finance-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .finance-button {
+            padding: 18px;
+            font-size: 22px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #21262d;
+            color: #00e1ff;
+            transition: 0.3s ease-in-out, transform 0.2s;
+            box-shadow: 0px 4px 10px rgba(0, 225, 255, 0.3);
+        }
+
+        .finance-button:hover {
+            background: #29303a;
+            transform: scale(1.1);
+            box-shadow: 0px 6px 12px rgba(0, 225, 255, 0.5);
+        }
+
+        /* How to Calculate Section */
+        .how-to-calculate {
+            background: #161b22;
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 225, 255, 0.5);
+            color: #00e1ff;
+        }
+
+        .how-to-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .how-to-description {
+            font-size: 18px;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Website Title (Now in Top Left) -->
     <div class="logo-title">Calculator Yethu</div>
 
-    <!-- Calculator UI -->
     <div class="calculator">
         <input type="text" id="display" class="display" disabled>
         <div class="buttons">
@@ -142,50 +240,142 @@
             <button onclick="appendValue('.')">.</button>
             <button onclick="calculateResult()" class="equal">=</button>
         </div>
+
+        <div class="extra-buttons">
+            <button class="extra-button" onclick="appendValue('√')">√</button>
+            <button class="extra-button" onclick="appendValue('^')">x²</button>
+            <button class="extra-button" onclick="appendValue('π')">π</button>
+        </div>
+    </div>
+
+    <!-- Finance Section -->
+    <div class="finance-section">
+        <div class="finance-title">Finance Calculations</div>
+        <div class="finance-description">
+            <p>Use this section to perform basic finance calculations such as loan repayments, compound interest, or simple interest. Enter the necessary values like loan amount, interest rate, and time period to get calculated results.</p>
+        </div>
+        
+        <div class="finance-buttons">
+            <button class="finance-button" onclick="calculateLoan()">Loan Repayment</button>
+            <button class="finance-button" onclick="calculateInterest()">Simple Interest</button>
+            <button class="finance-button" onclick="calculateCompoundInterest()">Compound Interest</button>
+        </div>
+    </div>
+
+    <!-- How to Calculate Section -->
+    <div class="how-to-calculate">
+        <div class="how-to-title">How to Calculate</div>
+        <div class="how-to-description">
+            <p><strong>Calculating Pi (π):</strong> Pi is the ratio of the circumference of a circle to its diameter. It’s an irrational number, meaning it can't be expressed exactly as a simple fraction. Its approximate value is 3.14159, but it continues infinitely without repeating.</p>
+            <p><strong>Simple Interest:</strong> The formula for simple interest is <em>I = P × R × T</em>, where <em>P</em> is the principal, <em>R</em> is the interest rate, and <em>T</em> is the time period in years.</p>
+            <p><strong>Compound Interest:</strong> The formula for compound interest is <em>A = P(1 + r/n)^(nt)</em>, where <em>P</em> is the principal, <em>r</em> is the annual interest rate, <em>n</em> is the number of times interest is compounded per year, and <em>t</em> is the time in years.</p>
+        </div>
     </div>
 
     <script>
-        let display = document.getElementById("display");
-
-        function appendValue(value) {
-            display.value += value;
-            document.title = Calculator Yethu - ${display.value};
-        }
+        let display = document.getElementById('display');
 
         function clearDisplay() {
-            display.value = "";
-            document.title = "Calculator Yethu";
+            display.value = '';
         }
 
         function deleteLast() {
             display.value = display.value.slice(0, -1);
-            document.title = Calculator Yethu - ${display.value};
+        }
+
+        function appendValue(value) {
+            display.value += value;
         }
 
         function calculateResult() {
             try {
-                let result = eval(display.value);
+                let result = eval(display.value.replace('π', Math.PI).replace('^', '**'));
                 display.value = result;
-                document.title = Result: ${result} - Calculator Yethu;
             } catch (error) {
-                display.value = "Error";
+                display.value = 'Error';
             }
         }
 
-        // Keyboard Support
-        document.addEventListener("keydown", function(event) {
-            const key = event.key;
-            if (!isNaN(key) || ["+", "-", "*", "/", ".", "%"].includes(key)) {
-                appendValue(key);
-            } else if (key === "Enter") {
-                calculateResult();
-            } else if (key === "Backspace") {
-                deleteLast();
-            } else if (key === "Escape") {
-                clearDisplay();
-            }
-        });
-    </script>
+        // Finance calculation functions
+        function calculateLoan() {
+            let principal = prompt("Enter the loan amount:");
+            let rate = prompt("Enter the interest rate (annual):");
+            let time = prompt("Enter the loan period in years:");
+            
+            principal = parseFloat(principal);
+            rate = parseFloat(rate) / 100 / 12;
+            time = parseFloat(time) * 12;
+            
+            let monthlyPayment = principal * rate / (1 - Math.pow(1 + rate, -time));
+            alert(`Monthly Payment: $${monthlyPayment.toFixed(2)}`);
+        }
 
+        function calculateInterest() {
+            let principal = prompt("Enter the principal amount:");
+            let rate = prompt("Enter the interest rate (annual):");
+            let time = prompt("Enter the time in years:");
+            
+            principal = parseFloat(principal);
+            rate = parseFloat(rate) / 100;
+            time = parseFloat(time);
+            
+            let interest = principal * rate * time;
+            alert(`Simple Interest: $${interest.toFixed(2)}`);
+        }
+
+        function calculateCompoundInterest() {
+            let principal = prompt("Enter the principal amount:");
+            let rate = prompt("Enter the interest rate (annual):");
+            let time = prompt("Enter the time in years:");
+            let n = prompt("Enter the number of times interest is compounded per year:");
+            
+            principal = parseFloat(principal);
+            rate = parseFloat(rate) / 100;
+            time = parseFloat(time);
+            n = parseFloat(n);
+            
+            let amount = principal * Math.pow(1 + rate / n, n * time);
+            let interest = amount - principal;
+            alert(`Compound Interest: $${interest.toFixed(2)}`);
+        }
+    </script>
+    <!-- Your previous content here -->
+
+    <!-- Finance section -->
+    <div class="finance-section">
+        <!-- Finance section content here -->
+    </div>
+
+    <!-- History of Calculators and Fun Facts Section -->
+<div class="info-section">
+    <div class="info-title" style="color: #00e1ff;">History of Calculators</div>
+    <div class="info-content" style="color: white;">
+        The history of calculators dates back to ancient times when humans first devised tools to perform arithmetic operations. The first known mechanical device was the **Abacus**, used by ancient civilizations such as the Babylonians and the Chinese.
+        <br><br>
+        In the 17th century, **Blaise Pascal** invented the first mechanical calculator, the **Pascaline**, which could add and subtract. This innovation laid the groundwork for future devices. Later, in 1820, **Charles Babbage** designed the **Difference Engine**, the first mechanical computer, which would inspire modern computers.
+        <br><br>
+        The first electronic calculators appeared in the 1960s, with the **IBM 610 Auto-Point Computer** being one of the first to use an electronic interface. By the 1970s, pocket-sized calculators became commercially available, revolutionizing how we performed calculations, making them portable and accessible to everyone.
+    </div>
+
+    <div class="fact-box" style="color: white; margin-top: 40px;">
+        <h4 style="color: #00e1ff;">Fun Facts About Calculators:</h4>
+        <ul>
+            <li>The first mechanical calculator, the **Pascaline**, could only add and subtract, but it was groundbreaking for its time.</li>
+            <li>The **Abacus** has been used for thousands of years and is still in use in some parts of the world today!</li>
+            <li>In the 1970s, the first **pocket calculator** was introduced, and it was as large as a brick compared to today's models.</li>
+            <li>Calculators have evolved from mechanical devices to the powerful digital tools we use today, capable of solving complex scientific and financial problems.</li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- Get in touch section -->
+<div class="contact-section" style="text-align: center; padding: 20px; background-color: #111; color: white;">
+    <p>Get in touch with us via email: <a href="mailto:zagogo2024@gmail.com" style="color: #00e1ff;">zagogo2024@gmail.com</a></p>
+</div>
+<script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+
+    <!-- Closing body tag -->
 </body>
 </html>
+
