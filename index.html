@@ -1,213 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculator Yethu</title>
-  <style>
-    /* Global Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Yethu</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #0d1117;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: 150vh; /* Increased height for scrolling */
-      padding-top: 40px;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0d1117;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 150vh; /* Increased height for scrolling */
+            padding-top: 40px;
+        }
 
-    /* Title in Top Left */
-    .logo-title {
-      font-size: 28px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #00e1ff;
-      text-shadow: 0px 0px 8px #00e1ff, 0px 0px 16px #00e1ff;
-      position: fixed;
-      top: 10px;
-      left: 15px;
-      animation: glow 2s infinite alternate;
-      background: rgba(13, 17, 23, 0.8);
-      padding: 10px 20px;
-      border-radius: 8px;
-      z-index: 1000;
-    }
+        /* Title in Top Left */
+        .logo-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #00e1ff;
+            text-shadow: 0px 0px 8px #00e1ff, 0px 0px 16px #00e1ff;
+            position: fixed;
+            top: 10px;
+            left: 15px;
+            animation: glow 2s infinite alternate;
+            background: rgba(13, 17, 23, 0.8);
+            padding: 10px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+        }
 
-    @keyframes glow {
-      0% { text-shadow: 0px 0px 8px #00e1ff, 0px 0px 16px #00e1ff; }
-      100% { text-shadow: 0px 0px 12px #00e1ff, 0px 0px 20px #00e1ff; }
-    }
+        @keyframes glow {
+            0% { text-shadow: 0px 0px 8px #00e1ff, 0px 0px 16px #00e1ff; }
+            100% { text-shadow: 0px 0px 12px #00e1ff, 0px 0px 20px #00e1ff; }
+        }
 
-    /* Calculator Box */
-    .calculator {
-      width: 350px;
-      background: #161b22;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0px 4px 15px rgba(0, 225, 255, 0.5);
-      text-align: center;
-      margin-top: 80px; /* Moved down for spacing */
-    }
+        /* Calculator Box */
+        .calculator {
+            width: 350px;
+            background: #161b22;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 225, 255, 0.5);
+            text-align: center;
+            margin-top: 80px; /* Moved down for spacing */
+        }
 
-    /* Display Screen */
-    .display {
-      width: 100%;
-      height: 70px;
-      font-size: 26px;
-      text-align: right;
-      padding: 15px;
-      border: none;
-      border-radius: 8px;
-      background: #0a0f14;
-      color: #00e1ff;
-      outline: none;
-      font-weight: bold;
-      box-shadow: inset 0px 0px 8px rgba(0, 225, 255, 0.5);
-    }
+        /* Display Screen */
+        .display {
+            width: 100%;
+            height: 70px;
+            font-size: 26px;
+            text-align: right;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #0a0f14;
+            color: #00e1ff;
+            outline: none;
+            font-weight: bold;
+            box-shadow: inset 0px 0px 8px rgba(0, 225, 255, 0.5);
+        }
 
-    /* Grid Layout for Buttons */
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-top: 15px;
-    }
+        /* Grid Layout for Buttons */
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
 
-    /* Button Styles */
-    button {
-      padding: 18px;
-      font-size: 22px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      background: #21262d;
-      color: #00e1ff;
-      transition: 0.3s ease-in-out, transform 0.2s;
-      box-shadow: 0px 4px 10px rgba(0, 225, 255, 0.3);
-    }
+        /* Button Styles */
+        button {
+            padding: 18px;
+            font-size: 22px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #21262d;
+            color: #00e1ff;
+            transition: 0.3s ease-in-out, transform 0.2s;
+            box-shadow: 0px 4px 10px rgba(0, 225, 255, 0.3);
+        }
 
-    button:hover {
-      background: #29303a;
-      transform: scale(1.1);
-      box-shadow: 0px 6px 12px rgba(0, 225, 255, 0.5);
-    }
+        button:hover {
+            background: #29303a;
+            transform: scale(1.1);
+            box-shadow: 0px 6px 12px rgba(0, 225, 255, 0.5);
+        }
 
-    /* Special Buttons */
-    .operator { background: #ff9800; color: white; }
-    .operator:hover { background: #e68900; }
-    .clear { background: red; color: white; }
-    .equal { background: green; color: white; grid-column: span 2; }
+        /* Special Buttons */
+        .operator { background: #ff9800; color: white; }
+        .operator:hover { background: #e68900; }
+        .clear { background: red; color: white; }
+        .equal { background: green; color: white; grid-column: span 2; }
 
-    /* Ad Container */
-    .ad-banner {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 9999;
-    }
-  </style>
+    </style>
 </head>
 <body>
 
-  <!-- Website Title (Top Left) -->
-  <div class="logo-title">Calculator Yethu</div>
+    <!-- Website Title (Now in Top Left) -->
+    <div class="logo-title">Calculator Yethu</div>
 
-  <!-- Calculator UI -->
-  <div class="calculator">
-    <input type="text" id="display" class="display" disabled>
-    <div class="buttons">
-      <button onclick="clearDisplay()" class="clear">C</button>
-      <button onclick="deleteLast()">⌫</button>
-      <button onclick="appendValue('%')">%</button>
-      <button onclick="appendValue('/')" class="operator">÷</button>
-
-      <button onclick="appendValue('7')">7</button>
-      <button onclick="appendValue('8')">8</button>
-      <button onclick="appendValue('9')">9</button>
-      <button onclick="appendValue('*')" class="operator">×</button>
-
-      <button onclick="appendValue('4')">4</button>
-      <button onclick="appendValue('5')">5</button>
-      <button onclick="appendValue('6')">6</button>
-      <button onclick="appendValue('-')" class="operator">−</button>
-
-      <button onclick="appendValue('1')">1</button>
-      <button onclick="appendValue('2')">2</button>
-      <button onclick="appendValue('3')">3</button>
-      <button onclick="appendValue('+')" class="operator">+</button>
-
-      <button onclick="appendValue('0')">0</button>
-      <button onclick="appendValue('.')">.</button>
-      <button onclick="calculateResult()" class="equal">=</button>
+    <!-- Calculator UI -->
+    <div class="calculator">
+        <input type="text" id="display" class="display" disabled>
+        <div class="buttons">
+            <button onclick="clearDisplay()" class="clear">C</button>
+            <button onclick="deleteLast()">⌫</button>
+            <button onclick="appendValue('%')">%</button>
+            <button onclick="appendValue('/')" class="operator">÷</button>
+            
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button onclick="appendValue('*')" class="operator">×</button>
+            
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button onclick="appendValue('-')" class="operator">−</button>
+            
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button onclick="appendValue('+')" class="operator">+</button>
+            
+            <button onclick="appendValue('0')">0</button>
+            <button onclick="appendValue('.')">.</button>
+            <button onclick="calculateResult()" class="equal">=</button>
+        </div>
     </div>
-  </div>
 
-  <!-- Adsterra Ad Banner -->
-  <div class="ad-banner">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '273f5d15c49d5a37c9afe278e6c47137',
-        'format' : 'iframe',
-        'height' : 60,
-        'width' : 468,
-        'params' : {}
-      };
+    <script>
+        let display = document.getElementById("display");
+
+        function appendValue(value) {
+            display.value += value;
+            document.title = Calculator Yethu - ${display.value};
+        }
+
+        function clearDisplay() {
+            display.value = "";
+            document.title = "Calculator Yethu";
+        }
+
+        function deleteLast() {
+            display.value = display.value.slice(0, -1);
+            document.title = Calculator Yethu - ${display.value};
+        }
+
+        function calculateResult() {
+            try {
+                let result = eval(display.value);
+                display.value = result;
+                document.title = Result: ${result} - Calculator Yethu;
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+
+        // Keyboard Support
+        document.addEventListener("keydown", function(event) {
+            const key = event.key;
+            if (!isNaN(key) || ["+", "-", "*", "/", ".", "%"].includes(key)) {
+                appendValue(key);
+            } else if (key === "Enter") {
+                calculateResult();
+            } else if (key === "Backspace") {
+                deleteLast();
+            } else if (key === "Escape") {
+                clearDisplay();
+            }
+        });
     </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/273f5d15c49d5a37c9afe278e6c47137/invoke.js"></script>
-  </div>
-
-  <script>
-    let display = document.getElementById("display");
-
-    function appendValue(value) {
-      display.value += value;
-      document.title = `Calculator Yethu - ${display.value}`;
-    }
-
-    function clearDisplay() {
-      display.value = "";
-      document.title = "Calculator Yethu";
-    }
-
-    function deleteLast() {
-      display.value = display.value.slice(0, -1);
-      document.title = `Calculator Yethu - ${display.value}`;
-    }
-
-    function calculateResult() {
-      try {
-        let result = eval(display.value);
-        display.value = result;
-        document.title = `Result: ${result} - Calculator Yethu`;
-      } catch (error) {
-        display.value = "Error";
-      }
-    }
-
-    // Keyboard Support
-    document.addEventListener("keydown", function(event) {
-      const key = event.key;
-      if (!isNaN(key) || ["+", "-", "*", "/", ".", "%"].includes(key)) {
-        appendValue(key);
-      } else if (key === "Enter") {
-        calculateResult();
-      } else if (key === "Backspace") {
-        deleteLast();
-      } else if (key === "Escape") {
-        clearDisplay();
-      }
-    });
-  </script>
 
 </body>
 </html>
